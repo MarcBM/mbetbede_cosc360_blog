@@ -1,68 +1,24 @@
-# myblog
+# COSC360 Assignment - Blog
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Marc Betbeder - SID: 220263237
+https://github.com/MarcBM/mbetbede_cosc360_blog
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Report
 
-## About Laravel
+### Approach
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Once it became clear to me that the assignment was as simple as following the lectures for the most part, I began coding along with Ibrahim as he was explaining the various features and syntax of Laravel.
+I adjusted the code as I went to fit with my style, and refered to the Laravel documentation to fill any gaps that were left from the lectures, especially with regards to the creation of Factories, Seeders, and ensuring that the Update and Deletion functionality was working correctly. I found the Laravel documentation quite easy to read, though there were some strange omissions from it, particularly how to apply the fillable property to attributes, though this was covered by Ibrahim in a lecture.
+Once I had written the Factory and Seeder for my Post Model, testing the application became much easier, and I was able to use large quantities of random data, as well as my own, to test the application.
+I did not spend much time, if any, making sure that the website was visually appealing, but I intend to do some of this in future steps of the assignment.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Challenges
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+My main challenge was achieving a functional edit feature for my posts. As I came to it, I used the Laravel documentation to implement a very simple update query on the Post object I was passed by my form. I copied the create view and placed in pre-filled data to build the edit view. The view worked well, and I was able to see my pre-filled data, though when I went to submit the form, I was first confronted with an error since I had used a 'POST' method for the form action. I reviewed which routes were available to me, and found that I needed to use a 'PUT' method, so I changed the form action to suit, and it seemed like the edit functionality was working as intended, but when I tried to actually change the data, I found that nothing was being edited. I spent quite a while trying to see if there was something wrong with my update query syntax, and I searched on forums and through the Laravel documentation to try and find any hint as to where I went wrong. Finally, I realised that it could in fact be my view causing the problem, as I was redirecting to the 'show' route at the end of my 'update' function. This meant that there was no difference to me as to whether I was actually posting my data, or was simply following the same URL with a GET request instead. After some quick testing I found that this was indeed the case, and my update method was never being run at all. I searched for another long while to see why this could be until I stumbled upon a forum post that explained my mistake. I was not aware that HTTP forms could not handle 'PUT' methods, and there was instead a blade workaround to do this instead. Once I placed that line in my form, and reapplied my initial update implementation, it worked immediately.
+I don't really know what the take away is from this challenge. I perhaps should have debugged more of my update method to find out faster that it was my view causing the issue, but the fact that nothing errors at all when attemptint to use a 'PUT' method in a form is surprising to me.
 
-## Learning Laravel
+### Bonus Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+I ran out of time to implement my intended bonus feature, which would have been a simple navigation bar to replace the basic "Back" button implemented by Ibrahim. As it stands, I did change that button to always point back to the index view, and placed it in the master layout, but that is not how I intended to leave the navigation bar.
+I planned to attempt making a second container in the master layout and instering a navigation bar into each of the views that way.
+The only thing I did implement that was slightly extra was making sure that the titles of each page were dynamic depending on which Post you were viewing or editing, though I do not think this deserves an extra mark.
