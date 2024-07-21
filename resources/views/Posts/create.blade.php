@@ -2,7 +2,6 @@
 
 @section('content')
   <h1>Write New Post</h1>
-  <a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
   <form action="{{ route('posts.store') }}" method="POST">
     @csrf
     <div class="mb-3">
