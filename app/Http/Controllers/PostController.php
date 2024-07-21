@@ -11,7 +11,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return "This is the posts index!";
+        // $posts = Post::all();
+        return view('Posts.index');
     }
 
     /**
@@ -19,7 +20,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('Posts.create');
     }
 
     /**
