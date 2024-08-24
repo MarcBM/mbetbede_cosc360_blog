@@ -1,6 +1,6 @@
 # COSC360 Assignment - Blog
 
-Marc Betbeder - SID: 220263237\
+Marc Betbeder - SID: 220263237
 https://github.com/MarcBM/mbetbede_cosc360_blog
 
 ## Report
