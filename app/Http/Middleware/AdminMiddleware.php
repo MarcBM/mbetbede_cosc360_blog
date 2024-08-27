@@ -17,7 +17,8 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = User::where('id', '=', Auth::id())->first();
+        $user = User::where('_id', '=', Auth::id())->first();
+
         if ($user->role !== 'admin') {
             abort(403, 'Unauthorized');
         }
