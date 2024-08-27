@@ -14,21 +14,12 @@
             </a>
           </li>
         @else
-          @if (Auth::user()->role == 'admin')
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/home">
-                <svg class="bi"><use xlink:href="#house-fill"/></svg>
-                Dashboard
-              </a>
-            </li>
-          @else
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/posts">
-                <svg class="bi"><use xlink:href="#house-fill"/></svg>
-                My Posts
-              </a>
-            </li>
-          @endif
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/posts">
+              <svg class="bi"><use xlink:href="#house-fill"/></svg>
+              My Posts
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2" href="/admin/posts">
               <svg class="bi"><use xlink:href="#file-earmark"/></svg>
