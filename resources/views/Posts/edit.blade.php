@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('content')
   <h1>Edit Post: {{ $post->title }}</h1>
