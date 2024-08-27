@@ -12,7 +12,7 @@ class UserController extends Controller
     // To see your own profile
     public function profile() {
         $user = User::where('_id', '=', Auth::id())->first();
-        if (!$user) {
+        if (!$user->exists) {
             abort(404);
         }
 
@@ -22,7 +22,7 @@ class UserController extends Controller
     // To edit your own profile
     public function editProfile() {
         $user = User::where('_id', '=', Auth::id())->first();
-        if (!$user) {
+        if (!$user->exists) {
             abort(404);
         }
 
@@ -30,8 +30,9 @@ class UserController extends Controller
     }
 
     // To edit a specific user
-    public function editUser(User $user) {
-        if (!$user) {
+    public function editUser(string $id) {
+        $user = User::where('_id', '=', $id)->first();
+        if (!$user->exists) {
             abort(404);
         }
 
@@ -41,7 +42,8 @@ class UserController extends Controller
     // To update your own profile
     public function updateProfile(Request $request) {
         $user = User::where('_id', '=', Auth::id())->first();
-        if (!$user) {
+        
+        if (!$user->exists) {
             abort(404);
         }
 
@@ -56,8 +58,9 @@ class UserController extends Controller
     }
 
     // To update a specific profile
-    public function updateUser(Request $request, User $user) {
-        if (!$user) {
+    public function updateUser(Request $request, string $id) {
+        $user = User::where('_id', '=', $id)->first();
+        if (!$user->exists) {
             abort(404);
         }
 
@@ -72,10 +75,17 @@ class UserController extends Controller
     }
 
     // To delete a specific user
-    public function deleteUser(User $user) {
-        if (!$user) {
+    public function deleteUser(string $id) {
+        $user = User::where('_id', '=', $id)->first();
+        if (!$user->exists) {
             abort(404);
         }
+
+        if ($user->id == Auth::id()) {
+            return redirect()->back()->with('error', 'You cannot delete yourself');
+        }
+
+
         $user->delete();
 
         return redirect()->route('admin.users');
@@ -84,7 +94,7 @@ class UserController extends Controller
     // To change your own password
     public function changePassword() {
         $user = User::where('_id', '=', Auth::id())->first();
-        if (!$user) {
+        if (!$user->exists) {
             abort(404);
         }
 
@@ -94,7 +104,7 @@ class UserController extends Controller
     // To update your own password
     public function updatePassword(Request $request) {
         $user = User::where('_id', '=', Auth::id())->first();
-        if (!$user) {
+        if (!$user->exists) {
             abort(404);
         }
 

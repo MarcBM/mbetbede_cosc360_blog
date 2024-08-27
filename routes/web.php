@@ -16,19 +16,20 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('posts', PostController::class);
     Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
-    Route::get('/user/editProfile', [UserController::class, 'editProfile']);
-    Route::put('/user/updateProfile', [UserController::class, 'updateProfile']);
-    Route::get('/user/changePassword', [UserController::class, 'changePassword']);
-    Route::put('/user/updatePassword', [UserController::class, 'updatePassword']);
+    Route::get('/user/editProfile', [UserController::class, 'editProfile'])->name('user.editProfile');
+    Route::put('/user/updateProfile', [UserController::class, 'updateProfile'])->name('user.updateProfile');
+    Route::get('/user/changePassword', [UserController::class, 'changePassword'])->name('user.changePassword');
+    Route::put('/user/updatePassword', [UserController::class, 'updatePassword'])->name('user.updatePassword');
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin', [AdminController::class, 'index']);
     Route::get('/admin/posts', [AdminController::class, 'posts'])->name('admin.posts');
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
-    Route::get('/user/{id}/edit', [UserController::class, 'editUser']);
-    Route::put('/user/{id}/update', [UserController::class, 'updateUser']);
-    Route::delete('/user/{id}/delete', [UserController::class, 'deleteUser']);
+    Route::get('/user/{id}/edit', [UserController::class, 'editUser'])->name('user.edit');
+    Route::put('/user/{id}/update', [UserController::class, 'updateUser'])->name('user.update');
+    Route::delete('/user/{id}/delete', [UserController::class, 'deleteUser'])->name('user.delete');
+    Route::delete('/post/{id}/delete', [AdminController::class, 'deletePost'])->name('admin.deletePost');
 });
 
 Auth::routes();

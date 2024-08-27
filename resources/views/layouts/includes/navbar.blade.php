@@ -8,20 +8,20 @@
       <ul class="nav flex-column">
         @guest
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/home">
+            <a class="nav-link d-flex align-items-center gap-2" href="/home">
               <svg class="bi"><use xlink:href="#house-fill"/></svg>
               Home
             </a>
           </li>
         @else
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/posts">
+            <a class="nav-link d-flex align-items-center gap-2" href="/posts">
               <svg class="bi"><use xlink:href="#house-fill"/></svg>
               My Posts
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="/admin/posts">
+            <a class="nav-link d-flex align-items-center gap-2" href="/home">
               <svg class="bi"><use xlink:href="#file-earmark"/></svg>
               All Posts
             </a>
@@ -59,6 +59,12 @@
               </li>
           @endif
         @else
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="/user/profile">
+              <svg class="bi"><use xlink:href="#people"/></svg>
+              My Profile
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2" href="{{ route('logout') }}"
               onclick="event.preventDefault();
