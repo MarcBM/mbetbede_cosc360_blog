@@ -10,6 +10,7 @@ https://github.com/MarcBM/mbetbede_cosc360_blog
 I began similarly to the last assignment, by following the lectures as Ibrahim explained the further features of Laravel and how we could use them. It was especially helpful seeing him import the bootstrap example.\
 As the assignment progressed, it was obvious that there was more work to be done on my own this time, which I enjoyed, as it was easy then to grow into the challenge and design according to the spec, instead of simply following the code in the lectures.\
 I used the Laravel documentation to help me with areas I was finding difficult, which included the custom admin middleware, user roles, and blade syntax. None of these issues were particularly challenging, but Laravel has particular syntax that makes solving these problems much easier, so I found it beneficial to find the answers before trying it for myself.\
+I made sure to test every feature I implemented thoroughly, and aside from a strange error regarding incorrect passwords on the login flow, everything is working as intended.\
 Beyond importing and ensuring everything conformed to the Bootstrap dashboard example, I did not spend much time beautifying the website, as it already looked quite visually appealing and professional. I did enjoy designing each page, but front-end UI development is not something I particularly enjoy, so I didn't spend too much time there.
 
 ### Challenges
