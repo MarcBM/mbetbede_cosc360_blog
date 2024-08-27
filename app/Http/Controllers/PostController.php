@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -23,6 +24,15 @@ class PostController extends Controller
      */
     public function create()
     {
+        $user = User::where('_id', '=', Auth::id())->first();
+        if (!$user) {
+            abort(404);
+        }
+
+        if ($user->role == 'user') {
+            abort(403);
+        }
+
         return view('Posts.create');
     }
 
@@ -31,6 +41,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $user = User::where('_id', '=', Auth::id())->first();
+        if (!$user) {
+            abort(404);
+        }
+
+        if ($user->role == 'user') {
+            abort(403);
+        }
         $request->validate([
             'title' => 'required',
             'content' => 'required'
@@ -45,9 +63,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if (Auth::id() != $post->user_id) {
-            abort(403);
-        }
         return view('Posts.show', compact('post'));
     }
 
@@ -56,7 +71,12 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        if (Auth::id() != $post->user_id) {
+        $user = User::where('_id', '=', Auth::id())->first();
+        if (!$user) {
+            abort(404);
+        }
+
+        if (Auth::id() != $post->user_id && $user->role != 'admin') {
             abort(403);
         }
         return view('Posts.edit', compact('post'));
@@ -67,7 +87,12 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        if (Auth::id() != $post->user_id) {
+        $user = User::where('_id', '=', Auth::id())->first();
+        if (!$user) {
+            abort(404);
+        }
+
+        if (Auth::id() != $post->user_id && $user->role != 'admin') {
             abort(403);
         }
         $request->validate([
@@ -85,7 +110,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        if (Auth::id() != $post->user_id) {
+        $user = User::where('_id', '=', Auth::id())->first();
+        if (!$user) {
+            abort(404);
+        }
+
+        if (Auth::id() != $post->user_id && $user->role != 'admin') {
             abort(403);
         }
         $post->delete();
