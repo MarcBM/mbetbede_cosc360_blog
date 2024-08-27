@@ -20,11 +20,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/user/updateProfile', [UserController::class, 'updateProfile']);
 });
 
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/admin/posts', [AdminController::class, 'posts']);
-Route::get('/admin/users', [AdminController::class, 'users']);
-Route::get('/user/{id}/edit', [UserController::class, 'editUser']);
-Route::delete('/user/{id}/delete', [UserController::class, 'deleteUser']);
-
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/admin/posts', [AdminController::class, 'posts']);
+    Route::get('/admin/users', [AdminController::class, 'users']);
+    Route::get('/user/{id}/edit', [UserController::class, 'editUser']);
+    Route::delete('/user/{id}/delete', [UserController::class, 'deleteUser']);
+});
 
 Auth::routes();
