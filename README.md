@@ -1,7 +1,7 @@
 # COSC360 Assignment - Blog
 
 Marc Betbeder - SID: 220263237\
-https://github.com/MarcBM/mbetbede_cosc360_blog
+https://github.com/MarcBM/mbetbede_cosc360_blog/tree/feature/sanctum-api
 
 ## Run Instructions
 
