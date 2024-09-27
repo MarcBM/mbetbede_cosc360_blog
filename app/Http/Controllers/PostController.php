@@ -12,10 +12,15 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // $posts = Post::all();
         $posts = Post::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get();
+
+        $token = $request->user()->createToken($request->user()->name);
+
+        dd($token->plainTextToken);
+
         return view('Posts.index', compact('posts'));
     }
 
