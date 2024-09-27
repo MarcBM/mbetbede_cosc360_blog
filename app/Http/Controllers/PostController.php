@@ -17,9 +17,9 @@ class PostController extends Controller
         // $posts = Post::all();
         $posts = Post::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get();
 
-        $token = $request->user()->createToken($request->user()->name);
+        // $token = $request->user()->createToken($request->user()->name);
 
-        dd($token->plainTextToken);
+        // dd($token->plainTextToken);
 
         return view('Posts.index', compact('posts'));
     }
